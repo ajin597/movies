@@ -1,0 +1,38 @@
+/* Styles for movie seats number system
+.seats-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .seats-number {
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .seats-number:hover {
+    background-color: #ccc;
+  }
+  
+  .seats-number.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .seats-number.disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .seats-number-text {
+    margin-right: 5px;
+  }
+   */
