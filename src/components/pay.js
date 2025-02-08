@@ -91,8 +91,8 @@ const ShowList = () => {
     <div>
       <h3>Contact Us</h3>
       <p>
-        Email: cjebin9@gmail.com <br />
-        Phone: 6369203924 <br />
+        Email: ajincc88@gmail.com <br />
+        Phone: 9494739934 <br />
         Address: 123 Movie Street, City, Country
       </p>
     </div>
