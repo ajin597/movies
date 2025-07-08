@@ -26,3 +26,15 @@
     color: #007bff;
   }
    */
+/* 
+.cinemaze-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cinemaze-card {
+  width: 250px;
+  margin: 0;
+} */

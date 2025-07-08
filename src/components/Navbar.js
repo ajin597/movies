@@ -31,9 +31,9 @@ function Navbar() {
     }
 
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark" style={{ backgroundColor: "black" }}>
+        <nav className="navbar navbar-dark navbar-expand-lg fixed-top space-between " style={{ backgroundColor: "#154360 ", color: "#000" }}>
         <div className="navbar-brand">
-            <h4 style={{ color: "#ffffff", margin: 0 }}> 🅱🅾🅾🅺🅼🆈🆂🅷🅾🆆 </h4>
+           <NavLink  className="navbar-brand"><b><span style={{ color: "#ff5733" }}>Boo</span>k<span style={{ color: "#ff5733" }}>My</span>Show</b></NavLink>
         </div>
         <button className="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -68,6 +68,7 @@ function Navbar() {
                                     <FontAwesomeIcon icon={faHistory} /> Previous Booking
                                 </NavLink>
                             </li>
+                           
                             <li className="nav-item">
                                 <NavLink to="#" className="nav-link" onClick={logout}>
                                     <FontAwesomeIcon icon={faSignOutAlt} /> Logout
