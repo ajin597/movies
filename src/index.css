@@ -1,3 +1,4 @@
+/* Reset & Base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,144 +6,95 @@
 }
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  background-color: #f5f5f5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-/* Headings and Paragraphs */
-h1,
-h2,
-h3 {
-  font-weight: bold;
-}
-
-p {
-  font-size: 16px;
-}
-
-/* Navbar */
-nav {
-  background: rgb(36, 203, 170);
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  border-radius: 4px;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3); /* fixed invalid rgba value */
-}
-
-nav a {
-  color: black;
-  padding: 8px 16px;
-  border-radius: 22px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  transition: 0.25s;
-  color: white;
-  background: rgb(50, 130, 209);
-}
-
-/* Fullscreen Background */
-.fullscreen-image,
-.gg {
-  background-image: url("https://cdn.dribbble.com/userupload/11823391/file/original-89a1b92cb93792da0db92bffd30eebe9.jpg?resize=1200x864");
-  background-position: center;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* Card Grid */
+/* Movie Card */
+/* === Cinamaze Card Styling === */
 .cinemaze-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: flex-start; /* Align cards to the left */
-  align-items: stretch;
+  padding: 0 10px;
 }
 
-/* Card */
 .cinemaze-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  background: #181818;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1.5px solid #232323;
+  width: 100%; /* Let react-slick handle width */
+  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 250px;
-  flex: 0 0 auto;
+  overflow: hidden;
 }
 
-/* Card Hover Effect */
-.cinemaze-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Image */
 .cinemaze-card-img {
   width: 100%;
-  height: 320px;
+  height: 300px;
   object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background: #222;
 }
 
-/* Card Body */
+
 .cinemaze-card-body {
-  padding: 16px;
-  display: flex;
+  padding: 18px 16px 16px 16px;
   flex-direction: column;
   flex-grow: 1;
+  color: #fff;
 }
 
 .cinemaze-card-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .cinemaze-card-sub {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 6px;
+  font-size: 15px;
+  color: #b0b0b0;
+  margin-bottom: 7px;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
-/* Button */
+/* === Book Button === */
 .cinemaze-card-btn-container {
   margin-top: auto;
   text-align: center;
 }
 
 .cinemaze-book-btn {
-  background-color: #3498db;
-  color: #ffffff;
+  background: linear-gradient(90deg, #e50914 60%, #ff6f00 100%);
+  color: #fff;
   border: none;
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 6px;
+  padding: 13px 0;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(229, 9, 20, 0.08);
+  letter-spacing: 0.5px;
 }
 
 .cinemaze-book-btn:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+  background: linear-gradient(90deg, #ff6f00 0%, #e50914 100%);
+  transform: translateY(-2px) scale(1.03);
 }
-
-/* Carousel */
+.cinemaze-book-btn:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 1px 4px rgba(229, 9, 20, 0.08);
+} 
 .carousel {
   border-radius: 15px;
   overflow: hidden;
@@ -151,7 +103,7 @@ nav a:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-inner img {
+.carousel-inner {
   width: 100%;
   height: 400px;
   object-fit: cover;
