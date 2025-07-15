@@ -49,7 +49,7 @@ const ShowList = () => {
   infinite: true,
   speed: 600,
   slidesToShow: 4,
-  slidesToScroll: 1,
+  slidesToScroll: 3,
   autoplay: true,
   autoplaySpeed: 3500,
   responsive: [
