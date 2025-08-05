@@ -42,7 +42,6 @@ body {
   background: #222;
 }
 
-
 .cinemaze-card-body {
   padding: 18px 16px 16px 16px;
   flex-direction: column;
@@ -55,7 +54,7 @@ body {
   font-weight: 700;
   margin-bottom: 10px;
   color: #fff;
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -63,7 +62,7 @@ body {
   font-size: 15px;
   color: #b0b0b0;
   margin-bottom: 7px;
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
 }
 
 /* === Book Button === */
@@ -94,7 +93,7 @@ body {
 .cinemaze-book-btn:active {
   transform: translateY(0) scale(1);
   box-shadow: 0 1px 4px rgba(229, 9, 20, 0.08);
-} 
+}
 .carousel {
   border-radius: 15px;
   overflow: hidden;
@@ -149,3 +148,87 @@ body {
 .carousel-control-next-icon:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.login-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background--custom {
+  background-color: #ffffff;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+path {
+  transform-origin: 50% 0%;
+}
+
+@keyframes path0 {
+  0% {
+    transform: rotate(40deg);
+  }
+  100% {
+    transform: rotate(-40deg);
+  }
+}
+
+@keyframes path1 {
+  0% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes path2 {
+  0% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(-50deg);
+  }
+}
+
+.form-container {
+  position: relative;
+  z-index: 1;
+  padding: 100px;
+}
+
+.background--custom1 {
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2;
+}
+
+canvas#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120vw; /* Increased width */
+  height: 100vh;
+  z-index: -1;
+  transform: rotate(-20deg) scale(1.5) translate(-25%, -20%);
+
+  /* Gradient color variables */
+  --gradient-color-1: #ef008f;
+  --gradient-color-2: #6ec3f4;
+  --gradient-color-3: #7038ff;
+  --gradient-color-4: #ffba27;
+  --gradient-speed: 0.000006;
+}
+
+

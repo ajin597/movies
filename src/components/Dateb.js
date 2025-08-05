@@ -85,8 +85,8 @@ const ShowList = () => {
     <div>
       <Navbar />
      
-         <h5 className=" text-dark px-2">
-        <b>Coming Soon🎥</b>
+         <h5 className=" text-dark px-2 ">
+      
       </h5>
       <div style={{ margin: "0 auto", maxWidth: "100%" }}>
         <h5 className=" text-dark px-2">
