@@ -33,7 +33,8 @@ function Navbar() {
     return (
         <nav className="navbar navbar-dark navbar-expand-lg fixed-top space-between " style={{ backgroundColor: "#154360 ", color: "#000" }}>
         <div className="navbar-brand">
-           <NavLink  className="navbar-brand"><b><span style={{ color: "#ff5733" }}>Boo</span>k<span style={{ color: "#ff5733" }}>My</span>Show</b></NavLink>
+            <h1 className="man" >BookMyShow</h1>
+           {/* <NavLink  className="navbar-brand"><b><span style={{ color: "#ff5733" }}>Boo</span>k<span style={{ color: "#ff5733" }}>My</span>Show</b></NavLink> */}
         </div>
         <button className="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

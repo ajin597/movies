@@ -231,4 +231,19 @@ canvas#canvas {
   --gradient-speed: 0.000006;
 }
 
+.man{
+  font-size: 2rem;
+  background: url("./components/assets/gradient.jpg") center;
+  background-size: cover;
+  background-clip: text;
+  color: transparent;
+  animation: animate 3s linear infinite;
+}
+
+
+@keyframes animate{
+  to {
+    background-position-x:-500px ;
+  }
+}
 
