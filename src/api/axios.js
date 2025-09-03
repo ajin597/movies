@@ -1,14 +1,14 @@
+// src/api/axios.js
 import axios from "axios";
 
-// Vite uses import.meta.env, CRA uses process.env
-const API = import.meta.env.VITE_API_BASE_URL || process.env.REACT_APP_API_BASE_URL;
+// Use deployed backend instead of localhost
+const API = import.meta.env.VITE_API_BASE_URL || "https://gg-az95.onrender.com";
 
 const axiosInstance = axios.create({
   baseURL: API,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // only if Django uses session auth
 });
 
 export default axiosInstance;
