@@ -17,7 +17,7 @@ function Navbar() {
 
     function logout() {
         if (user) {
-            axios.post('http://127.0.0.1:8000/logout/', {}, {
+            axios.post('/api/logout/', {}, {
                 headers: { 'Authorization': "Token " + user.token }
             })
             .then(() => {

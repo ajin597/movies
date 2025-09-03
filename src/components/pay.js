@@ -37,7 +37,7 @@ const ShowList = () => {
       try {
         if (selectedDate && selectedTime && token) {
           const res = await axios.get(
-            `http://localhost:8000/shows-at-time/${selectedTime}`,
+            `/api/shows-at-time/${selectedTime}`,
             { headers: { Authorization: `Token ${token}` } }
           );
           console.log("API data:", res.data); // 🔍 debug

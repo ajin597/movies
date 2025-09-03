@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
+import axiosInstance from "../api/axios";
 
 function Register() {
     const [name, setName] = useState('');
@@ -22,7 +23,7 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/register', {
+            const response = await axios.post('/api/register', {
                 username: name,
                 email: email,
                 password: password,

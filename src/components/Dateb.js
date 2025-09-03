@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axiosInstance from "../api/axios";
 
 const ShowList = () => {
   const [shows, setShows] = useState([]);
@@ -26,8 +27,8 @@ const ShowList = () => {
         };
 
         const response = selectedDate && token
-          ? await axios.get(`http://localhost:8000/shows/${selectedDate}/`, config)
-          : await axios.get("http://localhost:8000/list", config);
+          ? await axios.get(`/api/shows/${selectedDate}/`, config)
+          : await axios.get("/api/list", config);
 
         setShows(response.data);
       } catch (error) {
