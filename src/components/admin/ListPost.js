@@ -29,7 +29,7 @@ function ListPosts() {
 
     useEffect(() => {
         fetchPosts();
-    }, [user]);
+    }, [fetchPosts]);
 
     return (
         <div>
