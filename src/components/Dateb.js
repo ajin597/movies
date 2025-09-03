@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import API from "../api/axios";
 
 const ShowList = () => {
   const [shows, setShows] = useState([]);
@@ -26,8 +27,8 @@ const ShowList = () => {
         };
 
         const response = selectedDate && token
-          ? await axios.get(`http://localhost:8000/shows/${selectedDate}/`, config)
-          : await axios.get("http://localhost:8000/list", config);
+          ? await API.get(`/shows/${selectedDate}/`, config)
+          : await API.get("/list", config);
 
         setShows(response.data);
       } catch (error) {
@@ -119,7 +120,7 @@ const ShowList = () => {
               >
                 <Link to={`/blog1/${show.id}`}>
                   <img
-                    src={`http://localhost:8000${show.image}`}
+                    src={`https://gg-az95.onrender.com${show.image}`}
                     alt={show.title}
                     style={{ width: "100%", height: "500px" }}
                   />
@@ -146,7 +147,7 @@ const ShowList = () => {
             <div key={show.id} style={{ padding: "10px" }}>
               <div className="cinemaze-card" style={{ width: "350px" }}>
                 <img
-                  src={`http://localhost:8000${show.image}`}
+                  src={`https://gg-az95.onrender.com${show.image}`}
                   alt={show.title}
                   className="cinemaze-card-img"
                   onError={(e) => (e.target.src = "/fallback-image.jpg")}
