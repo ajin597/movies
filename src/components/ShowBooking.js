@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import checkAuth from "./Auth/checkAuth";
 import Navbar from "./Navbar";
-import axiosInstance from "../api/axios";
 
 const ShowDetails = () => {
   const { showId } = useParams();
@@ -21,8 +20,8 @@ const ShowDetails = () => {
           return;
         }
 
-        const response = await axiosInstance.get(
-          `/api/api/shows/${showId}/`,
+        const response = await axios.get(
+          `http://localhost:8000/api/shows/${showId}/`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -32,7 +31,7 @@ const ShowDetails = () => {
         );
         console.log("Show Data:", response.data);
         setShow(response.data[0]);
-        setBackgroundImage(`/api${response.data[0].image}`);
+        setBackgroundImage(`http://localhost:8000${response.data[0].image}`);
         setError(null);
       } catch (error) {
         setError("Failed to fetch show details. Please try again.");
@@ -76,7 +75,7 @@ const ShowDetails = () => {
               {show.image && (
                 <img
                   className=""
-                  src={`/api${show.image}`}
+                  src={`http://localhost:8000${show.image}`}
                   alt="Show Poster"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />

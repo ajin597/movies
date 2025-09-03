@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import checkAuth from "./Auth/checkAuth";
 import Navbar from './Navbar';
-import axiosInstance from "../api/axios";
 
 const Booking = () => {
   const { showId } = useParams();
@@ -12,29 +12,19 @@ const Booking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const user = useSelector(store => store.auth.user);
   const token = user ? user.token : null;
 
   const handleBooking = async () => {
-    if (selectedSeats.length === 0) {
-      setError('Please select at least one seat.');
-      return;
-    }
-    setLoading(true);
-    setError(null);
-    setSuccess(false);
-
     try {
       if (!showId) {
         setError('Show ID is missing.');
-        setLoading(false);
         return;
       }
 
-      const bookingResponse = await axiosInstance.post(
-        `/api/bookings/${showId}/`,
+      const response = await axios.post(
+        `http://localhost:8000/bookings/${showId}/`,
         { number_of_tickets: selectedSeats.length },
         {
           headers: {
@@ -44,14 +34,10 @@ const Booking = () => {
         }
       );
 
-      const { booking_id, razorpay_order_id, amount } = bookingResponse.data;
+      const { booking_id, razorpay_order_id, amount } = response.data;
 
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onerror = () => {
-        setError('Failed to load payment gateway. Please check your connection.');
-        setLoading(false);
-      };
       script.onload = () => {
         const options = {
           key: 'rzp_test_H8tj7QU829vkdv',
@@ -61,28 +47,29 @@ const Booking = () => {
           name: 'State Bank',
           description: 'Ticket Booking',
           handler: async function (response) {
-            // Payment successful
-            setSuccess(true);
-            setError(null);
-            setLoading(false);
-            // Redirect or update UI
-            navigate('/blog'); // Or a success page
+            alert(`Booking confirmed! Razorpay Payment ID: ${booking_id}`);
+            navigate('/blog');
 
-            try {
-              // Send email in the background
-              await axiosInstance.post(
-                `/api/send/${booking_id}/`,
-                { user_email: user.email },
-                {
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${token}`
+            if (response.error) {
+              setError('Payment failed. Please try again.');
+              setSuccess(false);
+            } else {
+              setSuccess(true);
+              setError(null);
+              try {
+                await axios.post(
+                  `http://localhost:8000/send/${booking_id}/`,
+                  { user_email: user.email },
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Token ${token}`
+                    }
                   }
-                }
-              );
-            } catch (emailError) {
-              console.error('Email send failed:', emailError);
-              // Don't block user flow for email failure
+                );
+              } catch (error) {
+                console.error('Email send failed:', error);
+              }
             }
           },
           prefill: {
@@ -92,29 +79,16 @@ const Booking = () => {
           },
           notes: { booking_id },
           theme: { color: '#3399cc' },
-          modal: {
-            ondismiss: function() {
-              console.log('Payment modal dismissed');
-              setError('Payment was not completed.');
-              setLoading(false);
-            }
-          }
         };
 
         const rzp = new window.Razorpay(options);
-        rzp.on('payment.failed', function (response) {
-          setError(`Payment failed: ${response.error.description}`);
-          setSuccess(false);
-          setLoading(false);
-        });
         rzp.open();
       };
       document.body.appendChild(script);
     } catch (error) {
       console.error('Booking failed:', error);
-      setError(error.response?.data?.message || 'Failed to book tickets. Please try again.');
+      setError('Failed to book tickets. Please try again.');
       setSuccess(false);
-      setLoading(false);
     }
   };
 
@@ -209,7 +183,6 @@ const Booking = () => {
             <button
               onClick={handleBooking}
               className="btn btn-primary"
-              disabled={loading}
               style={{
                 backgroundColor: '#e50914',
                 border: 'none',
@@ -217,11 +190,9 @@ const Booking = () => {
                 fontSize: '16px',
                 fontWeight: 'bold',
                 borderRadius: '6px',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                opacity: loading ? 0.6 : 1,
               }}
             >
-              {loading ? 'Processing...' : 'Pay'}
+              Pay
             </button>
 
             {error && <p className="text-danger mt-3">{error}</p>}

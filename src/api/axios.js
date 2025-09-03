@@ -1,14 +1,8 @@
-// src/api/axios.js
 import axios from "axios";
 
-// Use deployed backend instead of localhost
-const API = import.meta.env.VITE_API_BASE_URL || "https://gg-az95.onrender.com";
-
-const axiosInstance = axios.create({
-  baseURL: API,
-  headers: {
-    "Content-Type": "application/json",
-  },
+const API = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || "http://127.0.0.1:8000", 
+  // fallback to local if env not set
 });
 
-export default axiosInstance;
+export default API;

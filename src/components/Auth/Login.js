@@ -1,9 +1,9 @@
 import { useState } from "react";
+import axios from 'axios';
 import Navbar from "../Navbar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/authSlice";
-import axiosInstance from "../../api/axios";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -12,24 +12,22 @@ function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const attemptLogin = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axiosInstance.post('/api/user/', {
-                username: username,
-                password: password
-            });
+    function attemptLogin() {
+        axios.post('http://127.0.0.1:8000/user/', {
+            username: username,
+            password: password
+        }).then(response => {
             setErrorMessage('');
             const { token, username: name, isAdmin } = response.data;
             const user = { username: name, token, isAdmin };
             dispatch(setUser(user));
 
             if (isAdmin) {
-                window.location.href = '/api/admin/';
+                window.location.href = 'http://127.0.0.1:8000/admin/';
             } else {
                 navigate('/blog');
             }
-        } catch (error) {
+        }).catch(error => {
             if (error.response && error.response.data.errors) {
                 setErrorMessage(Object.values(error.response.data.errors).join(' '));
             } else if (error.response && error.response.data.message) {
@@ -37,8 +35,8 @@ function Login() {
             } else {
                 setErrorMessage('Failed to login user. Please contact admin');
             }
-        }
-    };
+        });
+    }
 
     const cardStyle = {
         position: "relative",
@@ -84,16 +82,15 @@ function Login() {
             <div className="container" style={{ marginTop: '150px', position: 'relative', zIndex: 1 }}>
                 <div className="row justify-content-center">
                     <div className="col-md-6">
-                        <form onSubmit={attemptLogin}>
-                            <div className="card" style={cardStyle}>
-                                <div className="card-body">
-                                    <h1 className="card-title">Login</h1>
-                                    {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-                                    <div className="form-group">
-                                        <label>Username:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
+                        <div className="card" style={cardStyle}>
+                            <div className="card-body">
+                                <h1 className="card-title">Login</h1>
+                                {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+                                <div className="form-group">
+                                    <label>Email:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
                                         value={username}
                                         onChange={(event) => setUsername(event.target.value)}
                                         autoComplete="off"
@@ -108,13 +105,12 @@ function Login() {
                                         onChange={(event) => setPassword(event.target.value)}
                                         autoComplete="off"
                                     />
-                                    </div>
-                                    <div className="form-group mt-3">
-                                        <button type="submit" className="btn btn-primary btn-block w-100">Login</button>
-                                    </div>
+                                </div>
+                                <div className="form-group mt-3">
+                                    <button className="btn btn-primary btn-block w-100" onClick={attemptLogin}>Login</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
