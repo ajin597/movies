@@ -9,6 +9,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import API from "../api/axios";
 
 function Navbar() {
     const user = useSelector(store => store.auth.user);
@@ -17,7 +18,7 @@ function Navbar() {
 
     function logout() {
         if (user) {
-            axios.post('http://127.0.0.1:8000/logout/', {}, {
+            API.post('/logout/', {}, {
                 headers: { 'Authorization': "Token " + user.token }
             })
             .then(() => {
