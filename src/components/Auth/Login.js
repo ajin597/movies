@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/authSlice";
+import API from "../../api/axios";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ function Login() {
     const dispatch = useDispatch();
 
     function attemptLogin() {
-        axios.post('http://127.0.0.1:8000/user/', {
+        API.post('/user/', {
             username: username,
             password: password
         }).then(response => {
@@ -23,7 +24,7 @@ function Login() {
             dispatch(setUser(user));
 
             if (isAdmin) {
-                window.location.href = 'http://127.0.0.1:8000/admin/';
+                window.location.href = 'https://gg-az95.onrender.com/admin/';
             } else {
                 navigate('/blog');
             }
