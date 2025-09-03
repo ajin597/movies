@@ -21,7 +21,7 @@ const ShowDetails = () => {
           return;
         }
 
-        const response = await axios.get(
+        const response = await axiosInstance.get(
           `/api/api/shows/${showId}/`,
           {
             headers: {

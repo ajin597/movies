@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import checkAuth from "./Auth/checkAuth";
 import Navbar from "./Navbar";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa"
+import axiosInstance from "../api/axios";
 
 const ShowList = () => {
   const { showId } = useParams();
@@ -36,7 +37,7 @@ const ShowList = () => {
     const fetchShows = async () => {
       try {
         if (selectedDate && selectedTime && token) {
-          const res = await axios.get(
+          const res = await axiosInstance.get(
             `/api/shows-at-time/${selectedTime}`,
             { headers: { Authorization: `Token ${token}` } }
           );
