@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import checkAuth from "./Auth/checkAuth";
 import Navbar from './Navbar';
-
+import API from "../api/axios";
 const Booking = () => {
   const { showId } = useParams();
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ const Booking = () => {
         return;
       }
 
-      const response = await axios.post(
-        `http://localhost:8000/bookings/${showId}/`,
+      const response = await API.post(
+        `/bookings/${showId}/`,
         { number_of_tickets: selectedSeats.length },
         {
           headers: {
@@ -57,8 +57,8 @@ const Booking = () => {
               setSuccess(true);
               setError(null);
               try {
-                await axios.post(
-                  `http://localhost:8000/send/${booking_id}/`,
+                await API.post(
+                  `/send/${booking_id}/`,
                   { user_email: user.email },
                   {
                     headers: {

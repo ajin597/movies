@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import checkAuth from './Auth/checkAuth';
 import Navbar from './Navbar';
+import API from '../api/axios';
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -11,7 +12,7 @@ const MyBookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/my-bookings/', {
+        const response = await API.get('/my-bookings/', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Token ${user.token}`
@@ -28,7 +29,7 @@ const MyBookings = () => {
 
   const handleDownloadTicket = async (bookingId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/download/${bookingId}/`, {
+      const response = await API.get(`/download/${bookingId}/`, {
         responseType: 'blob',
         headers: {
           'Authorization': `Token ${user.token}`

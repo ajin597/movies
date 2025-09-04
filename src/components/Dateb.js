@@ -92,7 +92,7 @@ const ShowList = () => {
                 <Link to={`/blog1/${show.id}`}>
                   {/* ✅ Use API.defaults.baseURL for image path */}
                   <img
-                    src={`${API.defaults.baseURL}${show.image}`}
+                    src={`https://gg-az95.onrender.com${show.image}`}
                     alt={show.title}
                     style={{ width: "100%", height: "500px" }}
                   />
@@ -119,7 +119,7 @@ const ShowList = () => {
               <div key={show.id} style={{ padding: "10px" }}>
                 <div className="cinemaze-card" style={{ width: "350px" }}>
                   <img
-                    src={`${API.defaults.baseURL}${show.image}`}
+                    src={`https://gg-az95.onrender.com${show.image}`}
                     alt={show.title}
                     className="cinemaze-card-img"
                     onError={(e) => (e.target.src = "/fallback-image.jpg")}
